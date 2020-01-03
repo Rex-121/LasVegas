@@ -29,11 +29,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GameControl.start()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+        
         return true
     }
 
     var window: UIWindow?
         
+    
+    @objc func orientationChanged() {
+        GameControl.statusBarOrientationChanged()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 

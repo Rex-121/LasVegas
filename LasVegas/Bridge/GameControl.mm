@@ -28,7 +28,18 @@ Application* app = nullptr;
     CGRect bounds = [[UIScreen mainScreen] bounds];
     app = new AppDelegate(bounds.size.width * scale, bounds.size.height * scale);
 
+    
 }
+
+
++ (void)statusBarOrientationChanged {
+    float scale = [[UIScreen mainScreen] scale];
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    float width = bounds.size.width * scale;
+    float height = bounds.size.height * scale;
+    app->updateViewSize(width, height);
+}
+
 
 + (void)start {
     app->start();
