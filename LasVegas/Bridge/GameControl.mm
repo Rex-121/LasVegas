@@ -28,7 +28,6 @@ Application* app = nullptr;
     CGRect bounds = [[UIScreen mainScreen] bounds];
     app = new AppDelegate(bounds.size.width * scale, bounds.size.height * scale);
 
-    
 }
 
 
@@ -43,6 +42,9 @@ Application* app = nullptr;
 
 + (void)start {
     app->start();
+}
++ (void)end {
+    app->end();
 }
 
 + (void)appDidEnterBackground {

@@ -13,4 +13,8 @@
 
 #import "RootViewController.h"
 
+#import "WalletBridge.h"
+
+#import "WalletFunction.h"
+
 #endif /* CocosJS_Bridge_Header_h */

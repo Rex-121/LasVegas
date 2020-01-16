@@ -19,15 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GameControl.genesis()
         
-        window = UIWindow(frame: UIScreen.main.bounds)
+//        window = UIWindow(frame: UIScreen.main.bounds)
         
-        rootvc = RootViewController()
-        
-        window?.rootViewController = rootvc
-        
-        window?.makeKeyAndVisible()
-        
-        GameControl.start()
+//        rootvc = RootViewController()
+//
+//        rootvc?.automaticallyAdjustsScrollViewInsets = false
+//        rootvc?.extendedLayoutIncludesOpaqueBars = false
+//        rootvc?.edgesForExtendedLayout = .all
+//
+//        window?.rootViewController = rootvc
+//
+//        window?.makeKeyAndVisible()
+//
+//        GameControl.start()
         
         NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
         
