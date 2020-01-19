@@ -13,5 +13,7 @@ workspace 'LasVegas.xcworkspace'
 
     pod 'ReactiveSwift'
     pod 'ReactiveCocoa'
+    
+    pod 'PKHUD'
   
 end

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,29 +11,57 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Cattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6rX-t0-dEq"/>
+                        <viewControllerLayoutGuide type="bottom" id="fYF-Tp-A25"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXL-9t-vsg">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXL-9t-vsg">
                                 <rect key="frame" x="425" y="192" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="ss" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tow-t7-4Ij"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1242-2688" translatesAutoresizingMaskIntoConstraints="NO" id="NIt-7C-tCw">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                            </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.80000000000000004" progressImage="组 12" trackImage="圆角矩形" translatesAutoresizingMaskIntoConstraints="NO" id="dfk-mQ-rCZ">
+                                <rect key="frame" x="80" y="341" width="736" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="lY2-Sb-AEd"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="dfk-mQ-rCZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="80" id="5Nf-d3-9kn"/>
                             <constraint firstItem="gXL-9t-vsg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KlK-NG-t73"/>
+                            <constraint firstItem="dfk-mQ-rCZ" firstAttribute="bottom" secondItem="NIt-7C-tCw" secondAttribute="bottom" constant="-28" id="Oq8-kg-j39"/>
                             <constraint firstItem="gXL-9t-vsg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bJB-np-Azy"/>
+                            <constraint firstItem="NIt-7C-tCw" firstAttribute="top" secondItem="6rX-t0-dEq" secondAttribute="bottom" id="gkB-EK-bhy"/>
+                            <constraint firstAttribute="bottom" secondItem="NIt-7C-tCw" secondAttribute="bottom" id="itI-WR-UAl"/>
+                            <constraint firstAttribute="trailing" secondItem="dfk-mQ-rCZ" secondAttribute="trailing" constant="80" id="jIM-SJ-jue"/>
+                            <constraint firstAttribute="trailing" secondItem="NIt-7C-tCw" secondAttribute="trailing" id="m5P-zE-eAR"/>
+                            <constraint firstItem="NIt-7C-tCw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tGp-5K-Mva"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="progressView" destination="dfk-mQ-rCZ" id="6JA-cA-CMd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="80" y="-86"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="1242-2688" width="444.66665649414062" height="250"/>
+        <image name="圆角矩形" width="966" height="69"/>
+        <image name="组 12" width="928" height="50"/>
+    </resources>
 </document>

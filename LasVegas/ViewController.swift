@@ -11,12 +11,27 @@ import UIKit
 import ReactiveSwift
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var progressView: UIProgressView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        WalletCenter.default.ready.signal.observeValues { (value) in
+        
+        Game.execute(.start)
+        
+        
+        let ready = WalletCenter.default.ready.signal
+        
+        ready.observe(on: UIScheduler()).observeValues { [weak self] (value) in
             print(value)
+            
+            self?.progressView.progress = 1
+            
+        }
+        
+        ready.delay(0.5, on: QueueScheduler.main).observeValues { [weak self] (_) in
+            self?.ss()
         }
         
         
@@ -46,9 +61,8 @@ class ViewController: UIViewController {
     
     @IBAction func ss() {
         
-        present(RootViewController(), animated: true, completion: nil)
+        present(RootViewController(), animated: false, completion: nil)
         
-        Game.execute(.start)
     }
 
 }

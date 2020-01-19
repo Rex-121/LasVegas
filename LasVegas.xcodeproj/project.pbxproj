@@ -13,8 +13,6 @@
 		A21E0CB123BE26FF002901BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21E0CB023BE26FF002901BD /* AppDelegate.swift */; };
 		A21E0CB523BE26FF002901BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21E0CB423BE26FF002901BD /* ViewController.swift */; };
 		A21E0CB823BE26FF002901BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21E0CB623BE26FF002901BD /* Main.storyboard */; };
-		A21E0CBA23BE2700002901BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A21E0CB923BE2700002901BD /* Assets.xcassets */; };
-		A21E0CBD23BE2700002901BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21E0CBB23BE2700002901BD /* LaunchScreen.storyboard */; };
 		A21E0CC823BE28E5002901BD /* jsb_module_register.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A21E0CC623BE28E5002901BD /* jsb_module_register.cpp */; };
 		A21E0CC923BE28E5002901BD /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A21E0CC723BE28E5002901BD /* AppDelegate.cpp */; };
 		A21E118D23BE2A50002901BD /* libjscocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A21E118923BE2A31002901BD /* libjscocos2d iOS.a */; };
@@ -48,6 +46,7 @@
 		A26E1D5023BE3B7B00FF7160 /* project.json in Resources */ = {isa = PBXBuildFile; fileRef = A26E1D4C23BE3B7B00FF7160 /* project.json */; };
 		A26E1D5123BE3B7B00FF7160 /* jsb-adapter in Resources */ = {isa = PBXBuildFile; fileRef = A26E1D4D23BE3B7B00FF7160 /* jsb-adapter */; };
 		A26E1D5423BEE0D000FF7160 /* GameControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = A26E1D5323BEE0D000FF7160 /* GameControl.mm */; };
+		A281164D23D0AA6500043306 /* EXHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A281164C23D0AA6500043306 /* EXHud.swift */; };
 		A28BFFD923C8664D0049F90B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BFFD823C8664C0049F90B /* Game.swift */; };
 		A28BFFE223CC4E710049F90B /* WalletFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = A28BFFE123CC4E710049F90B /* WalletFunction.m */; };
 		A2981FB423BE339F005F6D78 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2981FB323BE339F005F6D78 /* WebKit.framework */; };
@@ -59,6 +58,7 @@
 		A2C3C12723C466440052284A /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C3C12623C466440052284A /* Wallet.swift */; };
 		A2C3C12923C57EAE0052284A /* WalletCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C3C12823C57EAE0052284A /* WalletCenter.swift */; };
 		A2E0707823C36D9600FC8552 /* WalletBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2E0707723C36D9600FC8552 /* WalletBridge.mm */; };
+		A2E6289E23D05BCE000985A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A21E0CB923BE2700002901BD /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +103,6 @@
 		A21E0CB423BE26FF002901BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A21E0CB723BE26FF002901BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A21E0CB923BE2700002901BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A21E0CBC23BE2700002901BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A21E0CBE23BE2700002901BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A21E0CC523BE28E5002901BD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A21E0CC623BE28E5002901BD /* jsb_module_register.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsb_module_register.cpp; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		A26E1D4D23BE3B7B00FF7160 /* jsb-adapter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "jsb-adapter"; sourceTree = "<group>"; };
 		A26E1D5223BEE0D000FF7160 /* GameControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameControl.h; sourceTree = "<group>"; };
 		A26E1D5323BEE0D000FF7160 /* GameControl.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameControl.mm; sourceTree = "<group>"; };
+		A281164C23D0AA6500043306 /* EXHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXHud.swift; sourceTree = "<group>"; };
 		A28BFFD823C8664C0049F90B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A28BFFE023CC4E710049F90B /* WalletFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletFunction.h; sourceTree = "<group>"; };
 		A28BFFE123CC4E710049F90B /* WalletFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletFunction.m; sourceTree = "<group>"; };
@@ -233,11 +233,11 @@
 				A28BFFD823C8664C0049F90B /* Game.swift */,
 				A21E119523BE2D8F002901BD /* Binder.h */,
 				A21E119623BE2D8F002901BD /* Binder.mm */,
+				A281164C23D0AA6500043306 /* EXHud.swift */,
 				A21E145D23BE31B0002901BD /* CocosJS-Bridge-Header.h */,
 				A2981FBA23BE3525005F6D78 /* Bridge */,
 				A21E0CB623BE26FF002901BD /* Main.storyboard */,
 				A21E0CB923BE2700002901BD /* Assets.xcassets */,
-				A21E0CBB23BE2700002901BD /* LaunchScreen.storyboard */,
 				A21E0CBE23BE2700002901BD /* Info.plist */,
 			);
 			path = LasVegas;
@@ -434,13 +434,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A26E1D4F23BE3B7B00FF7160 /* script in Resources */,
-				A21E0CBD23BE2700002901BD /* LaunchScreen.storyboard in Resources */,
 				A26E1D5123BE3B7B00FF7160 /* jsb-adapter in Resources */,
-				A21E0CBA23BE2700002901BD /* Assets.xcassets in Resources */,
 				A26E1D5023BE3B7B00FF7160 /* project.json in Resources */,
 				A21E0CB823BE26FF002901BD /* Main.storyboard in Resources */,
 				A26E1D4E23BE3B7B00FF7160 /* main.js in Resources */,
 				A26E1D4923BE3B7400FF7160 /* res in Resources */,
+				A2E6289E23D05BCE000985A3 /* Assets.xcassets in Resources */,
 				A26E1D4723BE3B6900FF7160 /* src in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +519,7 @@
 				A26E1D5423BEE0D000FF7160 /* GameControl.mm in Sources */,
 				A2C3C12923C57EAE0052284A /* WalletCenter.swift in Sources */,
 				A2981FBF23BE3537005F6D78 /* SDKWrapper.m in Sources */,
+				A281164D23D0AA6500043306 /* EXHud.swift in Sources */,
 				A216875723C777EC001ACF22 /* WalletCenter+Reactive.swift in Sources */,
 				A28BFFE223CC4E710049F90B /* WalletFunction.m in Sources */,
 				A21E0CB123BE26FF002901BD /* AppDelegate.swift in Sources */,
@@ -552,14 +552,6 @@
 				A21E0CB723BE26FF002901BD /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A21E0CBB23BE2700002901BD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A21E0CBC23BE2700002901BD /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -684,6 +676,7 @@
 			baseConfigurationReference = 7FD6DA84A46272F1305B910A /* Pods-Cattle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Apple Development: JianFeng Bu (2YY5VV6LGQ)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = G3MZ557Q9X;
@@ -710,7 +703,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "LasVegas/CocosJS-Bridge-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = arm64;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -719,6 +712,7 @@
 			baseConfigurationReference = 32270E944887B15C6F2917FE /* Pods-Cattle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Apple Development: JianFeng Bu (2YY5VV6LGQ)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = G3MZ557Q9X;
@@ -745,7 +739,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "LasVegas/CocosJS-Bridge-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = arm64;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;
 		};

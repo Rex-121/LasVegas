@@ -33,13 +33,25 @@ static WalletBridge *manager = nil;
 + (void)config {
     [[WalletManager manager] setWalletChain:@"yy"];
     [[WalletManager manager] setWalletDebug:ICRunType_Develop OTCDebug:ICRunType_Develop];
-    
+    [[WalletManager manager] getDomainListFinish:^(ICSDKResultModel *result) {
+        NSLog(@"%@", result);
+    }];
 }
 
 + (void)prepare:(void (^)(ICSDKResultModel * _Nonnull))results {
     [[WalletManager manager] loadAllChainsFinish:results];
 }
 
+
++ (void)didWannaCopy:(NSString *)value display:(NSString *)display {
+    
+    WalletBridge *bridge = [WalletBridge manager];
+
+    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(didCopy:display:)])) {
+        [bridge.delegate didCopy:value display:display];
+    }
+    
+}
 
 
 + (ICSDKResultModel *)findAllWallets {

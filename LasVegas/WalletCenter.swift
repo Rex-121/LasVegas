@@ -12,6 +12,8 @@ import XKit
 
 import ReactiveSwift
 
+import PKHUD
+
 final class WalletCenter: NSObject {
     
     enum Prepare {
@@ -123,7 +125,12 @@ final class WalletCenter: NSObject {
     static func load(ready: @escaping () -> ()) {
         WalletBridge.prepare { (model) in
             print(model)
-            ready()
+            if model.code == 0 {
+                ready()
+            }
+            else {
+                WalletCenter.load(ready: ready)
+            }
         }
     }
     
@@ -188,25 +195,34 @@ extension WalletCenter {
 
 extension WalletCenter: WalletBridgeDelegate {
     
+    func didCopy(_ value: String, display: String) {
+        UIPasteboard.general.string = WalletBridge.manager().currentWalletAddress
+        EXHud.show(message: display + "成功")
+    }
+    
     struct VL: Encodable {
         let address: String
         let balance: String
     }
     
+    /// "DIDRecTypeT"
     func balance(by address: String, jsCall: String) {
         
         balanceDispose?.dispose()
         
-        let net = WalletCenter.reactive.balance(by: address)
+        let aa = address.nonEmpty ?? WalletBridge.manager().currentWalletAddress
+        
+        let net = WalletCenter.reactive.balance(by: aa)
         
         balanceDispose = net.startWithResult { (result) in
             
             switch result {
             case .success(let coins):
                 guard let v = coins.first(where: { $0.symbol == "DC" }) else { return }
-                let vc = VL(address: address, balance: v.balance)
-                let js = JSCall(mainFunction: jsCall, value: .encodable(vc))
-                JSFunctionCall.call(js.function)
+                let vc = VL(address: aa, balance: v.balance)
+                
+                JSCall(mainFunction: jsCall, value: .encodable(vc)).call()
+//                JSFunctionCall.call(js.function)
                 
             case .failure: break
             }
@@ -222,12 +238,18 @@ extension WalletCenter: WalletBridgeDelegate {
         case .create:
             break
         case .import:
-            WalletCenter.create(.init(name: "abcd", password: "aa123456", way: .import(encKey: key))) { (result) in
+            WalletCenter.create(.init(name: "abcd", password: "aa123456", way: .import(encKey: key))) { [weak self] (result) in
                 switch result {
                 case .success(let wallet):
                     print("创建", wallet)
+                    EXHud.show(message: "导入钱包成功")
+                    let all = WalletCenter.all()
+                    
+                    self?.haveAtLeastOneWallet.swap(all.first)
+                    
                     JSFunctionCall.call(JSCall(mainFunction: jsCall, value: .void).function)
-                case .failure(_):
+                case .failure(let error):
+                    EXHud.show(message: error.description.nonEmpty ?? "导入钱包失败")
                     break
                 }
             }
@@ -253,15 +275,17 @@ extension WalletCenter: WalletBridgeDelegate {
         
         WalletFunction.makeATransaction(txs, address: WalletBridge.manager().currentWalletAddress, password: "aa123456") { (model) in
             let vaul = model.result(Hash.self)
-
+            
             if let success = vaul.successValue() {
                 let call = JSCall(mainFunction: transactionSuccess, value: .string(success.txHash))
                 JSFunctionCall.call(call.function)
             }
-            else if let error = vaul.x.failure {
-                let call = JSCall(mainFunction: transactionFail, value: .string(error.description))
+            else if let _ = vaul.x.failure {
+                let call = JSCall(mainFunction: transactionFail, value: .string("投注失败"))
                 JSFunctionCall.call(call.function)
             }
+            
+//            EXHud.show(message: msg)
             
             WalletCenter.default.getBalance.apply(WalletBridge.currentWalletAddress()).start()
         }
@@ -310,6 +334,10 @@ struct JSCall {
     
     var function: String {
         return "cc.\(mainFunction)(\(value.parameters));"
+    }
+    
+    func call() {
+        JSFunctionCall.call(self.function)
     }
     
 }

@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, WalletDidWantNew) {
 
 - (void)balanceBy:(NSString *)address jsCall:(NSString *)jsCall;
 
+- (void)didCopy:(NSString *)value display:(NSString *)display;
 
 @end
 
@@ -80,6 +81,10 @@ typedef NS_ENUM(NSUInteger, WalletDidWantNew) {
 
 /// js 获取指定钱包地址的余额
 + (void)requestBalanceByAddress:(NSString *)address callBack:(NSString *)callback;
+
+
+/// js 需要复制
++ (void)didWannaCopy:(NSString *)value display:(NSString *)display;
 
 @end
 
