@@ -48,11 +48,11 @@ Application* app = nullptr;
 }
 
 + (void)appDidEnterBackground {
-    app->applicationDidEnterBackground();
+//    app->applicationDidEnterBackground();
 }
 
 + (void)appWillEnterForeground {
-    app->applicationWillEnterForeground();
+//    app->applicationWillEnterForeground();
 }
 
 + (void)destory {
