@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             
         }
         
-        ready.delay(0.5, on: QueueScheduler.main).observeValues { [weak self] (_) in
+        ready.delay(0.5, on: QueueScheduler.main).take(first: 1).observeValues { [weak self] (_) in
             self?.ss()
         }
         

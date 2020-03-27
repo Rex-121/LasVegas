@@ -13,11 +13,11 @@ import ReactiveCocoa
 extension Reactive where Base: WalletCenter {
     
     
-    static func balance(by wallet: String?) -> SignalProducer<[CoinBalance], WalletCenter.Wrong> {
+    static func balance(by wallet: String?, coin: String) -> SignalProducer<[CoinBalance], WalletCenter.Wrong> {
         
         return SignalProducer { (observer, lifetime) in
             
-            WalletCenter.balance(by: wallet ?? "", balance: { (result) in
+            WalletCenter.balance(by: wallet ?? "", coin: coin, balance: { (result) in
                 
                 switch result {
                 case let .success(value): observer.send(value: value)

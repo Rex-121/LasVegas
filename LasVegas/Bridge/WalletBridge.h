@@ -24,15 +24,26 @@ typedef NS_ENUM(NSUInteger, WalletDidWantNew) {
 
 - (void)walletDidNeed;
 
+/// 是否需要密码以s创建钱包
+- (BOOL)requirePasswordToCreateWallet;
+
 - (void)makeTransaction:(NSString *)txs success:(NSString *)transactionSuccess failure: (NSString *)transactionFail;
 
 - (NSArray <NSString *>*)getAllWallets;
 
-- (void)newWallet:(WalletDidWantNew)enums keyIfNeeded:(NSString *)key jsCall:(NSString *)jsCall;
+- (NSString *)getSelectedWallet;
 
-- (void)balanceBy:(NSString *)address jsCall:(NSString *)jsCall;
+- (void)setSelectedWallet:(NSString *)wallet;
+
+- (NSString *)allWallets;
+
+- (void)newWallet:(WalletDidWantNew)enums name:(NSString *)name password:(NSString *)password keyIfNeeded:(NSString *)key jsCall:(NSString *)jsCall;
+
+- (void)balanceBy:(NSString *)address coin:(NSString *)coin jsCall:(NSString *)jsCall;
 
 - (void)didCopy:(NSString *)value display:(NSString *)display;
+
+//- (NSString *)getTheOnlyPassword;
 
 @end
 
@@ -52,6 +63,7 @@ typedef NS_ENUM(NSUInteger, WalletDidWantNew) {
 
 
 
+
 + (ICSDKResultModel *)findAllWallets;
 
 + (void)balanceByName:(NSString *)name results:(void(^)(ICSDKResultModel * result))result;
@@ -64,7 +76,14 @@ typedef NS_ENUM(NSUInteger, WalletDidWantNew) {
 
 /// 目前的钱包地址
 + (NSString *)currentWalletAddress;
-+ (void)setCurrentWallet:(NSString *)wallet;
+
+
+//+ (void)setCurrentWallet:(NSString *)wallet;
+
+/// 获取最新的钱包
++ (NSString *)getSelectedWallet;
+
++ (void)setSelectedWallet:(NSString *)wallet;
 
 
 + (void)walletBalanceDidUpdate:(NSString *)balance;
@@ -76,15 +95,21 @@ typedef NS_ENUM(NSUInteger, WalletDidWantNew) {
 /// js 是否有可用的地址
 + (NSString *)isAnyWalletAvailable;
 
++ (NSString *)allWallets;
+
 /// js 用户输入了钱包密钥
-+ (void)userDidInputPrivateKey:(NSString *)key callBack:(NSString *)callback;
++ (void)userDidInputPrivateKey:(NSString *)key name:(NSString *)name password:(NSString *)password callBack:(NSString *)callback;
 
 /// js 获取指定钱包地址的余额
-+ (void)requestBalanceByAddress:(NSString *)address callBack:(NSString *)callback;
-
++ (void)requestBalanceByAddress:(NSString *)address coin: (NSString *)coin callBack:(NSString *)callback;
 
 /// js 需要复制
 + (void)didWannaCopy:(NSString *)value display:(NSString *)display;
+
+/// 是否需要密码以s创建钱包
++ (BOOL)requirePasswordToCreateWallet;
+
++ (void)createWalletByName:(NSString *)name password:(NSString *)password callBack:(NSString *)callback;
 
 @end
 

@@ -43,6 +43,15 @@ static WalletBridge *manager = nil;
 }
 
 
++ (NSString *)allWallets {
+    WalletBridge *bridge = [WalletBridge manager];
+    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(allWallets)])) {
+        NSString *value = [bridge.delegate allWallets];
+        return value;
+    }
+    return @"";
+}
+
 + (void)didWannaCopy:(NSString *)value display:(NSString *)display {
     
     WalletBridge *bridge = [WalletBridge manager];
@@ -87,11 +96,19 @@ static WalletBridge *manager = nil;
     return @"";
 }
 
-+ (void)requestBalanceByAddress:(NSString *)address callBack:(NSString *)callback {
+//+ (void)requestBalanceByAddress:(NSString *)address callBack:(NSString *)callback {
+//    WalletBridge *bridge = [WalletBridge manager];
+//
+//    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(balanceBy:jsCall:)])) {
+//        [bridge.delegate balanceBy:address jsCall:callback];
+//    }
+//}
+
++ (void)requestBalanceByAddress:(NSString *)address coin: (NSString *)coin callBack:(NSString *)callback {
     WalletBridge *bridge = [WalletBridge manager];
 
-    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(balanceBy:jsCall:)])) {
-        [bridge.delegate balanceBy:address jsCall:callback];
+    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(balanceBy:coin:jsCall:)])) {
+        [bridge.delegate balanceBy:address coin: coin jsCall:callback];
     }
 }
 
@@ -130,17 +147,17 @@ static WalletBridge *manager = nil;
     return [[WalletBridge manager] currentWalletAddress];
     
 }
-+ (void)setCurrentWallet:(NSString *)wallet {
-    [WalletBridge manager].currentWalletAddress = wallet;
-}
+//+ (void)setCurrentWallet:(NSString *)wallet {
+//    [WalletBridge manager].currentWalletAddress = wallet;
+//}
 
 
-+ (void)userDidInputPrivateKey:(NSString *)key callBack:(NSString *)callback {
++ (void)userDidInputPrivateKey:(NSString *)key name:(NSString *)name password:(NSString *)password callBack:(NSString *)callback {
     
     WalletBridge *bridge = [WalletBridge manager];
     
-    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(newWallet:keyIfNeeded:jsCall:)])) {
-        [bridge.delegate newWallet:WalletDidWantNewImport keyIfNeeded:key jsCall:callback];
+    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(newWallet:name:password:keyIfNeeded:jsCall:)])) {
+        [bridge.delegate newWallet:WalletDidWantNewImport name:name password:password keyIfNeeded:key jsCall:callback];
     }
     
     
@@ -158,6 +175,46 @@ static WalletBridge *manager = nil;
     if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(walletDidNeed)])) {
         [bridge.delegate walletDidNeed];
     }
+    
+}
+
++ (NSString *)getSelectedWallet {
+    WalletBridge *bridge = [WalletBridge manager];
+    
+    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(getSelectedWallet)])) {
+        return [bridge.delegate getSelectedWallet];
+    }
+    return @"";
+}
+
++ (void)setSelectedWallet:(NSString *)wallet {
+    WalletBridge *bridge = [WalletBridge manager];
+    
+    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(setSelectedWallet:)])) {
+        [bridge.delegate setSelectedWallet:wallet];
+    }
+}
+
++ (BOOL)requirePasswordToCreateWallet {
+    WalletBridge *bridge = [WalletBridge manager];
+    
+    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(requirePasswordToCreateWallet)])) {
+        return [bridge.delegate requirePasswordToCreateWallet];
+    }
+    
+    return NO;
+}
+
+
++ (void)createWalletByName:(NSString *)name password:(NSString *)password callBack:(NSString *)callback {
+    
+    
+    WalletBridge *bridge = [WalletBridge manager];
+    
+    if ((bridge.delegate != nil) && ([bridge.delegate respondsToSelector:@selector(newWallet:name:password:keyIfNeeded:jsCall:)])) {
+        [bridge.delegate newWallet:WalletDidWantNewCreate name:name password:password keyIfNeeded:@"" jsCall:callback];
+    }
+    
     
 }
 
