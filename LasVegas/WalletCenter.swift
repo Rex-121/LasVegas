@@ -211,7 +211,7 @@ extension WalletCenter: WalletBridgeDelegate {
     
     func getSelectedWallet() -> String {
         guard let v = WalletCenter.default.haveAtLeastOneWallet.value else { return "" }
-        return JSCall.Value.encodable(v).parameters
+        return JSCall.Value.result(v).parameters
     }
     
     func didCopy(_ value: String, display: String) {
@@ -305,7 +305,7 @@ extension WalletCenter: WalletBridgeDelegate {
             EXHud.show(message: error.description.nonEmpty ?? "\(way.functionDes)钱包失败")
         }
         
-        JSFunctionCall.call(JSCall(mainFunction: jsCall, value: .bool(success)).function)
+        JSFunctionCall.call(JSCall(mainFunction: jsCall, value: .result(success)).function)
         
     }
     
@@ -338,7 +338,7 @@ extension WalletCenter: WalletBridgeDelegate {
     func allWallets() -> String {
         let all = WalletCenter.all()
         
-        let vv = JSCall.Value.encodable(all)
+        let vv = JSCall.Value.result(all)
         print(vv)
         return vv.parameters
     }
@@ -377,6 +377,10 @@ extension WalletCenter: WalletBridgeDelegate {
     
 }
 
+struct WalletResult<T: Encodable>: Encodable {
+    let success: Bool
+    let value: T
+}
 
 struct JSCall {
     
@@ -392,6 +396,8 @@ struct JSCall {
         
         case encodable(Encodable)
         
+        case result(Encodable)
+        
         var parameters: String {
             switch self {
             case .void:
@@ -402,6 +408,7 @@ struct JSCall {
                 do {
                     let data = try JSONEncoder().encode(AnyEncodable(encode))
                     let jsonObj = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    
                     let json = try JSONSerialization.data(withJSONObject: jsonObj, options: .fragmentsAllowed)
                     return String(data: json, encoding: .utf8) ?? ""
                 }
@@ -410,6 +417,12 @@ struct JSCall {
                 }
             case .bool(let value):
                 return Value.string(value ? "true" : "false").parameters
+            case .result(let value):
+
+                let a = JSCall.Value.encodable(value).parameters
+                let zz = Value.encodable(WalletResult(success: true, value: a)).parameters
+                print(zz)
+                return zz
             }
             
         }
